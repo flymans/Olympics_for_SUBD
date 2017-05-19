@@ -13,9 +13,28 @@
  ФИО:<br>
     <input  type="text" name="Name" value=""><br>
      Страна:<br>
-    <input type="text" name="Country" value=""><br>
+    <select name="Country">
+      <option value="">Выберите страну...</option>
+    <?php
+    include 'database2006.php';
+    $query= "SELECT * from countries";
+    $result=mysql_query($query);
+    while ($row = mysql_fetch_object($result)) {
+    echo '<option value="'.$row->Country_name.'">'. $row->Country_name. '</option>';
+    }
+    ?>
+  </select><br>
      Вид спорта:<br>
-    <input type="text" name="Sport" value="">
+     <select name="Sport">
+     <option value="">Выберите спорт...</option>
+     <?php
+     $query= "SELECT * from sports";
+     $result=mysql_query($query);
+     while ($row = mysql_fetch_object($result)) {
+     echo '<option value="'.$row->Sport_name.'">'. $row->Sport_name. '</option>';
+     }
+     ?>
+   </select>
   </div>
     <div class="right_div">
      Количество золота:<br>
@@ -31,7 +50,6 @@
 </div>
   </form>
   <?php
-  include 'database2006.php';
   if (!$cnct || !$dbselect) {
     mysql_error();
   }

@@ -11,24 +11,25 @@
     <aside>
     <input type="text" name="Name" placeholder="Введите имя/фамилию">
     <select name="Country">
-    <option value="">Выберите страну...</option>
-    <option value="Канада">Канада</option>
-    <option value="Россия">Россия</option>
-    <option value="Соединенные штаты">Соединенные штаты</option>
-    <option value="Германия">Германия</option>
-    <option value="Австрия">Австрия</option>
+      <option value="">Выберите страну...</option>
+    <?php
+    include 'database2006.php';
+    $query= "SELECT * from countries limit 5";
+    $result=mysql_query($query);
+    while ($row = mysql_fetch_object($result)) {
+    echo '<option value="'.$row->Country_name.'">'. $row->Country_name. '</option>';
+    }
+    ?>
   </select>
     <select name="Sport">
     <option value="">Выберите спорт...</option>
-    <option value="Конькобежный спорт">Конькобежный спорт</option>
-    <option value="Санный спорт">Санный спорт</option>
-    <option value="Биатлон">Биатлон</option>
-    <option value="Лыжные гонки">Лыжные гонки</option>
-    <option value="Горнолыжный спорт">Горнолыжный спорт</option>
-    <option value="Бобслей">Бобслей</option>
-    <option value="Керлинг">Керлинг</option>
-    <option value="Хоккей">Хоккей</option>
-    <option value="Фигурное катание">Фигурное катание</option>
+    <?php
+    $query= "SELECT * from sports";
+    $result=mysql_query($query);
+    while ($row = mysql_fetch_object($result)) {
+    echo '<option value="'.$row->Sport_name.'">'. $row->Sport_name. '</option>';
+    }
+    ?>
     </select>
   </aside>
 </center>
@@ -44,7 +45,6 @@
       header("Location: athletes2006.php");
   }
 }
-  include 'database2006.php';
   echo '<center>';
   echo '<table class="table_dark"><caption></caption><tr><th><b>Имя</b></th><th><b>Страна</b></th><th><b>Вид спорта</b></th><th><b>Золото</b></th><th><b>Серебро</b></th><th><b>Бронза</b></th></tr>';
   echo '</center>';
@@ -64,6 +64,8 @@
 
 }
   ?>
+
+</select>
   <form action="find_athletes2006.php" method="post">
 <input type="submit" class="button1" value="Назад" name="back">
 <a  href="menu2006.php" class="button"><span>⌂</span>В главное меню</a>

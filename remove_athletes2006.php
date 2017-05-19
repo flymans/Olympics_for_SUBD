@@ -14,7 +14,7 @@
   <?php
   include 'database2006.php';
 
-  $query = "SELECT * FROM athletes";
+  $query = "SELECT * FROM athletes order by Name asc";
   $result = mysql_query($query) or die(mysql_error());
 
   while ($row = mysql_fetch_object($result)) {

@@ -29,7 +29,7 @@ if (isset($_POST['enter'])) {
         }
         if (isset($_POST['password']))
         {
-          $password=$_POST['password'];
+          $password=md5($_POST['password']);
           if ($password =='')
           {
             unset($password);

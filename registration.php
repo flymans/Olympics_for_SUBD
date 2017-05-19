@@ -28,7 +28,7 @@ if (isset($_POST['registration'])) {
       }
       if (isset($_POST['password']))
       {
-        $password=$_POST['password'];
+        $password=md5($_POST['password']);
         if ($password =='')
         {
           unset($password);
