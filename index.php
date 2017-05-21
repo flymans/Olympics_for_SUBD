@@ -21,7 +21,7 @@ if (isset($_POST['enter'])) {
       }
        if (isset($_POST['login']))
         {
-          $login = $_POST['login'];
+          $login = mysql_real_escape_string($_POST['login']);
           if ($login == '')
           {
             unset($login);

@@ -51,9 +51,9 @@
 
   if( isset( $_POST['find'] ) )
   {
-    $name = strip_tags(trim($_POST['Name']));
-    $country = strip_tags(trim($_POST['Country']));
-    $sport = strip_tags(trim($_POST['Sport']));
+    $name = mysql_real_escape_string(trim($_POST['Name']));
+    $country = trim($_POST['Country']);
+    $sport = trim($_POST['Sport']);
     $query = "SELECT * FROM athletes where Name like '%$name%' and Country like '%$country%' and Sport like '%$sport%' order by gold desc,silver desc, bronze desc" ;
       $result = mysql_query($query) or die(mysql_error());
 

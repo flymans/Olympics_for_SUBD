@@ -11,7 +11,7 @@
   <form class="add_athlete_block" action="add_athletes2006.php" method="post">
     <div class="left_div">
  ФИО:<br>
-    <input  type="text" name="Name" value=""><br>
+    <input required  type="text" name="Name" value=""><br>
      Страна:<br>
     <select name="Country">
       <option value="">Выберите страну...</option>
@@ -54,12 +54,12 @@
     mysql_error();
   }
   if (isset($_POST['add'])) {
-    $name = strip_tags(trim($_POST['Name']));
-    $country = strip_tags(trim($_POST['Country']));
-    $sport= strip_tags(trim($_POST['Sport']));
-    $gold = strip_tags(trim($_POST['Gold']));
-    $silver = strip_tags(trim($_POST['Silver']));
-    $bronze = strip_tags(trim($_POST['Bronze']));
+    $name = mysql_real_escape_string(trim($_POST['Name']));
+    $country = trim($_POST['Country']);
+    $sport= trim($_POST['Sport']);
+    $gold = trim($_POST['Gold']);
+    $silver = trim($_POST['Silver']);
+    $bronze = trim($_POST['Bronze']);
     $all = "INSERT INTO athletes (Name, Country, Sport, Gold, Silver, Bronze) VALUES ('$name', '$country', '$sport', '$gold', '$silver', '$bronze')";
     $result = mysql_query($all);
     echo '<i> Спортсмен <b>'.$name.'</b> был добавлен.</i> <br />';
